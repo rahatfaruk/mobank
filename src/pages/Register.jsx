@@ -1,22 +1,28 @@
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { Eye, EyeSlash } from 'react-bootstrap-icons';
 import { useState } from 'react';
+import { Eye, EyeSlash } from 'react-bootstrap-icons';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import useAxios from '../hooks/useAxios';
 
 
 function Register() {
   const [showPin, setShowPin] = useState(false)
   const { handleSubmit, register, formState: { errors } } = useForm()
+  const {axiosPublic} = useAxios()
 
   // submit form to create new user  
   const onSubmit = async (data) => {
     try {
-      // TODO: post - send to server
-      console.log(data);
-
+      const res = await axiosPublic.post('/users/register', data)
+      console.log('res', res.data);
       toast.success('user registered successfully! Wait for admin approval!')
     }
     catch (err) {
+      // email already exist in server
+      if (err.response.status === 409) {
+        toast.error(err.response.data.message);
+        return
+      }
       toast.error(err.message)
       console.log(err.message);
     }
