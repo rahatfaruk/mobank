@@ -21,9 +21,14 @@ function Login() {
         return
       }
 
-      // TODO: send login req
-      const res = await axiosPublic.post('/user-login', data)
-      console.log('result:', res.data);
+      // send login req
+      const {data: user} = await axiosPublic.post('/user-login', data)
+      
+      // req to get auth token
+      const {data: token} = await axiosPublic.get(`/get-auth-token?email=${user.email}`)
+      localStorage.setItem('mobank:token', token)
+
+      toast.success('login successful!')
     }
     catch (err) {
       if (err.response.status === 409) {
