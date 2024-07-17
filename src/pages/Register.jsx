@@ -14,8 +14,7 @@ function Register() {
   const onSubmit = async (data) => {
     try {
       const res = await axiosPublic.post('/users/register', data)
-      console.log('res', res.data);
-      toast.success('user registered successfully! Wait for admin approval!')
+      toast.success('Registration request successful! Wait for admin approval!')
     }
     catch (err) {
       // email already exist in server
