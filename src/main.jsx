@@ -7,6 +7,8 @@ import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Home from './pages/Home.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
+import DashboardUser from './comps/dashUser'
+import SendMoney from './comps/dashUser/SendMoney'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +16,10 @@ const router = createBrowserRouter(
       <Route index element={ <Home/> } />
       <Route path='login' element={ <Login/> } />
       <Route path='register' element={ <Register/> } />
+      <Route path='dash-user' element={ <DashboardUser /> }>
+        <Route path='send-money' element={ <SendMoney/> } />
+
+      </Route>
     </Route>
   )
 )
