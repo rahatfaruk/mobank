@@ -3,6 +3,7 @@ import { At, Eye, EyeSlash } from 'react-bootstrap-icons';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import useAxios from '../hooks/useAxios';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [showPin, setShowPin] = useState(false)
@@ -43,7 +44,7 @@ function Login() {
   return (
     <section className="flex-1 px-4 py-4 dark:bg-gray-800 dark:text-gray-200">
       <div className="max-w-md mx-auto p-6 border rounded-md shadow-2xl">
-        <h2 className="text-2xl md:text-3xl font-semibold text-center mb-6">Login</h2>
+        <h2 className="text-3xl md:text-3xl font-semibold text-center mb-6">Login</h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <label className="block mb-4">
@@ -67,6 +68,8 @@ function Login() {
           <div className="mt-6">
             <button type="submit" className="bg-indigo-600 text-white w-full px-4 py-2 rounded-md hover:opacity-90">Login</button>
           </div>
+
+          <p className="mt-6 text-center">Don't have an account? <Link to="/register" className="text-indigo-600 hover:underline dark:text-indigo-500">Register now</Link></p>
         </form>
       </div>
     </section>

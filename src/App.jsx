@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Header from "./comps/Header";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -8,8 +9,7 @@ function App() {
   return (  
     <div>
       <Header />
-      {/* <Register /> */}
-      <Login />
+      <Outlet />
 
       <ToastContainer theme="colored" position="top-center" />
     </div>
